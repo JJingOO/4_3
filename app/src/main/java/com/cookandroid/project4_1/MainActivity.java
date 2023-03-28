@@ -4,18 +4,20 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     EditText edit1, edit2;
-    Button btnAdd, btnSub, btnMul, btnDiv;
+    Button btnAdd, btnSub, btnMul, btnDiv, btnRem;
     TextView textResult;
     String num1, num2;
-    Integer result;
+    Float result;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -31,46 +33,86 @@ public class MainActivity extends AppCompatActivity {
         btnSub = (Button) findViewById(R.id.BtnSub);
         btnMul = (Button) findViewById(R.id.BtnMul);
         btnDiv = (Button) findViewById(R.id.BtnDiv);
+        btnRem = (Button) findViewById((R.id.BtnRem));
 
         textResult = (TextView) findViewById(R.id.TextResult);
 
-        btnAdd.setOnTouchListener(new View.OnTouchListener() {
-            public boolean onTouch(View arg0, MotionEvent arg1) {
+        btnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (TextUtils.isEmpty(edit1.getText().toString()) || TextUtils.isEmpty(edit2.getText().toString())) {
+                    Toast.makeText(getBaseContext(), "숫자를 입력해주세요!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 num1 = edit1.getText().toString();
                 num2 = edit2.getText().toString();
-                result = Integer.parseInt(num1) + Integer.parseInt(num2);
+                result = Float.parseFloat(num1) + Float.parseFloat(num2);
                 textResult.setText("계산 결과 : " + result.toString());
-                return false;
+                return;
             }
         });
 
-        btnSub.setOnTouchListener(new View.OnTouchListener() {
-            public boolean onTouch(View arg0, MotionEvent arg1) {
+        btnSub.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (TextUtils.isEmpty(edit1.getText().toString()) || TextUtils.isEmpty(edit2.getText().toString())) {
+                    Toast.makeText(getBaseContext(), "숫자를 입력해주세요!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 num1 = edit1.getText().toString();
                 num2 = edit2.getText().toString();
-                result = Integer.parseInt(num1) - Integer.parseInt(num2);
+                result = Float.parseFloat(num1) - Float.parseFloat(num2);
                 textResult.setText("계산 결과 : " + result.toString());
-                return false;
             }
         });
 
-        btnMul.setOnTouchListener(new View.OnTouchListener() {
-            public boolean onTouch(View arg0, MotionEvent arg1) {
+        btnMul.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (TextUtils.isEmpty(edit1.getText().toString()) || TextUtils.isEmpty(edit2.getText().toString())) {
+                    Toast.makeText(getBaseContext(), "숫자를 입력해주세요!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 num1 = edit1.getText().toString();
                 num2 = edit2.getText().toString();
-                result = Integer.parseInt(num1) * Integer.parseInt(num2);
+                result = Float.parseFloat(num1) * Float.parseFloat(num2);
                 textResult.setText("계산 결과 : " + result.toString());
-                return false;
             }
         });
 
-        btnDiv.setOnTouchListener(new View.OnTouchListener() {
-            public boolean onTouch(View arg0, MotionEvent arg1) {
+        btnDiv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (TextUtils.isEmpty(edit1.getText().toString()) || TextUtils.isEmpty(edit2.getText().toString())) {
+                    Toast.makeText(getBaseContext(), "숫자를 입력해주세요!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 num1 = edit1.getText().toString();
                 num2 = edit2.getText().toString();
-                result = Integer.parseInt(num1) / Integer.parseInt(num2);
+                if (Integer.parseInt(num2) == 0) {
+                    Toast.makeText(getApplicationContext(), "0으로 나눌 수 없습니다!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                result = Float.parseFloat(num1) / Float.parseFloat(num2);
                 textResult.setText("계산 결과 : " + result.toString());
-                return false;
+            }
+        });
+
+        btnRem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (TextUtils.isEmpty(edit1.getText().toString()) || TextUtils.isEmpty(edit2.getText().toString())) {
+                    Toast.makeText(getBaseContext(), "숫자를 입력해주세요!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                num1 = edit1.getText().toString();
+                num2 = edit2.getText().toString();
+                if (Integer.parseInt(num2) == 0) {
+                    Toast.makeText(getApplicationContext(), "0으로 나눌 수 없습니다!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                result = Float.parseFloat(num1) % Float.parseFloat(num2);
+                textResult.setText("계산 결과 : " + result.toString());
             }
         });
     }
