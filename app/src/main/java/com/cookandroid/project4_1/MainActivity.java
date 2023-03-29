@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 num1 = edit1.getText().toString();
                 num2 = edit2.getText().toString();
-                if (Integer.parseInt(num2) == 0) {
+                if (Float.parseFloat(num2) == 0) {
                     Toast.makeText(getApplicationContext(), "0으로 나눌 수 없습니다!", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 num1 = edit1.getText().toString();
                 num2 = edit2.getText().toString();
-                if (Integer.parseInt(num2) == 0) {
+                if (Float.parseFloat(num2) == 0) {
                     Toast.makeText(getApplicationContext(), "0으로 나눌 수 없습니다!", Toast.LENGTH_SHORT).show();
                     return;
                 }
